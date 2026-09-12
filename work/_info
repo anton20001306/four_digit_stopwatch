@@ -1,0 +1,99 @@
+m255
+K4
+z2
+!s12c _opt1
+Z0 !s99 nomlopt
+!s12c _opt
+R0
+!s11f vlog 2025.2 2025.05, May 31 2025
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home/anton/four_digit_stopwatch
+T_opt
+!i145 1
+!i144 0
+!s110 1789199368
+V_i184[DVdZJ<D_l[1_D<70
+Z2 04 14 4 work bit_pattern_tb fast 0
+=1-9843fa471459-6aa50407-e58f0-28aae
+R0
+Z3 !s12f OEM100
+Z4 !s12b OEM100
+Z5 !s124 OEM10U2 
+Z6 !s135 nogc
+o-quiet -auto_acc_if_foreign -work work
+Z7 tCvgOpt 0
+n@_opt
+Z8 OL;O;2025.2;82
+R1
+T_opt1
+!i145 1
+!i144 0
+!s110 1789199690
+V?c_Z6ckc1GEDXITTF<GET2
+R2
+=1-9843fa471459-6aa5054a-7de0a-28e4a
+R0
+R3
+R4
+R5
+R6
+o-quiet -auto_acc_if_foreign -work work +acc
+R7
+n@_opt1
+R8
+R1
+vbit_pattern_tb
+Z9 2bit_seq_detector/mealy.sv|bit_seq_detector/bit_pattern_tb.sv
+Z10 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
+Z11 !s110 1789199903
+!i10b 1
+!s100 J>Cm=KTR8_DoVJ_]7ij`E1
+IjX9LiO:;b^3GgRDPfGN5g1
+S1
+R1
+w1789199026
+8bit_seq_detector/bit_pattern_tb.sv
+Fbit_seq_detector/bit_pattern_tb.sv
+!i122 7
+L0 3 45
+Z12 VDg1SIo80bB@j0V0VzS_@n1
+Z13 OL;L;2025.2;82
+r1
+!s85 0
+31
+Z14 !s108 1789199903.000000
+!s107 bit_seq_detector/bit_pattern_tb.sv|bit_seq_detector/mealy.sv|
+Z15 !s90 -work|work|bit_seq_detector/mealy.sv|bit_seq_detector/bit_pattern_tb.sv|
+!i113 0
+Z16 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R7
+vmealy
+R9
+R10
+R11
+!i10b 1
+!s100 1K9k@g:;0Sk4LV8iClJ942
+IO?:7ca;k6AdioLgeEOIiM0
+S1
+R1
+w1789194197
+8bit_seq_detector/mealy.sv
+Fbit_seq_detector/mealy.sv
+!i122 7
+L0 1 47
+R12
+R13
+r1
+!s85 0
+31
+R14
+Z17 !s107 bit_seq_detector/bit_pattern_tb.sv|bit_seq_detector/mealy.sv|
+R15
+!i113 0
+R16
+R7

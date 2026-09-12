@@ -42,8 +42,7 @@ initial begin
     @(posedge clk_i);
 
     // stop simulation
-    $stop;
+    $finish;
 end
-
 endmodule
 
