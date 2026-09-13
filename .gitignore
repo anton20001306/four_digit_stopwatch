@@ -1,0 +1,16 @@
+# QuestaSim / ModelSim generated files
+work/
+transcript
+modelsim.ini
+vsim.wlf
+vsim_stacktrace.vstf
+*.wlf
+*.vcd
+
+# C++ build output
+c++/test1
+
+# Editor and temporary files
+*~
+.#*
+.DS_Store

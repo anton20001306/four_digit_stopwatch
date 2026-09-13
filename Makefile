@@ -1,23 +1,49 @@
-TOP := bit_pattern_tb
-WORK := work
-VLOG := vlog
-VSIM := vsim
+# ============================================================
+#  Generic QuestaSim Makefile
+#
+#  Use the defaults with:
+#      make gui
+#
+#  Override the project from the command line, for example:
+#      make gui SRC_DIR=bit_seq_detector \
+#          RTL_SRCS="mealy.sv" \
+#          TB_SRC=bit_pattern_tb.sv \
+#          TB_TOP=bit_pattern_tb
+# ============================================================
 
-.PHONY: all compile sim gui clean
+# Default project. Override these variables on the make command line.
+SRC_DIR  ?= bit_seq_detector
+RTL_SRCS ?= mealy.sv
+TB_SRC   ?= bit_pattern_tb.sv
+TB_TOP   ?= bit_pattern_tb
 
-all: sim
+# Generic waveform script in the same directory as this Makefile.
+WAVE_DO  ?= wave.do
 
-$(WORK):
-	vlib $(WORK)
+# QuestaSim binaries. Example:
+#   make gui QUESTA_BIN=/opt/questasim/2024.1/bin/
+QUESTA_BIN ?=
+VLIB = $(QUESTA_BIN)vlib
+VLOG = $(QUESTA_BIN)vlog
+VSIM = $(QUESTA_BIN)vsim
+WORK = work
 
-compile: $(WORK)
-	$(VLOG) -work $(WORK) bit_seq_detector/mealy.sv bit_seq_detector/bit_pattern_tb.sv
+# Prefix source files with their project directory.
+SRCS = $(addprefix $(SRC_DIR)/, $(RTL_SRCS) $(TB_SRC))
 
-sim: compile
-	$(VSIM) -c -lib $(WORK) $(TOP) -do "do sim.tcl"
+.PHONY: all gui run compile clean
+
+all: gui
+
+compile:
+	$(VLIB) $(WORK)
+	$(VLOG) $(SRCS)
 
 gui: compile
-	$(VSIM) -gui -voptargs=+acc -lib $(WORK) $(TOP) -do "do sim_gui.tcl"
+	$(VSIM) -gui -voptargs="+acc" $(WORK).$(TB_TOP) -do "do $(WAVE_DO); run -all; wave zoom full"
+
+run: compile
+	$(VSIM) -c $(WORK).$(TB_TOP) -do "run -all; quit -f"
 
 clean:
-	rm -rf $(WORK) transcript vsim.wlf bit_pattern_tb.vcd
+	rm -rf $(WORK) transcript vsim.wlf vsim_stacktrace.vstf modelsim.ini *.vcd *.wlf
