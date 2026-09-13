@@ -5,6 +5,13 @@ using namespace std;
 
 int main(){
     string name = "Anton";
-    cout << "Hello " << name << std:: endl;
+    string response;
+
+    cout << "Hello " << name << endl;
+    cout << "how are you?" << "\n";
+
+    getline(cin, response);
+    cout << "You said: " << response << endl;
+
     return 0;
 }
