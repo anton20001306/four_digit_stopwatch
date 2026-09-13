@@ -1,8 +1,8 @@
 module full_adder (
-    input logic a, b, cin,
-    output logic sum, cout
+    input logic A, B, ci,
+    output logic S, co
 );
     
-assign {sum, cout} = a + b + cin;
+assign {S, co} = A + B + ci;
 
 endmodule

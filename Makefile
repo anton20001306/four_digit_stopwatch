@@ -12,10 +12,10 @@
 # ============================================================
 
 # Default project. Override these variables on the make command line.
-SRC_DIR  ?= bit_seq_detector
-RTL_SRCS ?= mealy.sv
-TB_SRC   ?= bit_pattern_tb.sv
-TB_TOP   ?= bit_pattern_tb
+SRC_DIR  ?= adders
+RTL_SRCS ?= n_adder.sv
+TB_SRC   ?= n_adder_tb.sv
+TB_TOP   ?= n_adder_tb
 
 # Generic waveform script in the same directory as this Makefile.
 WAVE_DO  ?= wave.do
