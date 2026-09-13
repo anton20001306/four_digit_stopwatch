@@ -1,0 +1,20 @@
+module dmem (
+    input        clk,
+    input        we,
+    input  [31:0] a,
+    input  [31:0] wd,
+    output [31:0] rd
+);
+
+    reg [31:0] RAM [63:0];
+
+    // Read the word selected by the word-aligned address.
+    assign rd = RAM[a[31:2]];
+
+    // Write data on the rising clock edge when enabled.
+    always @(posedge clk) begin
+        if (we)
+            RAM[a[31:2]] <= wd;
+    end
+
+endmodule
