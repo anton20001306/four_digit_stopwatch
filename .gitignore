@@ -2,13 +2,19 @@
 work/
 transcript
 modelsim.ini
+Makefile
+*.do
 vsim.wlf
 vsim_stacktrace.vstf
 *.wlf
 *.vcd
 
 # C++ build output
-c++/test1
+**/a.out
+*.out
+*.exe
+*.o
+*.obj
 
 # Editor and temporary files
 *~
