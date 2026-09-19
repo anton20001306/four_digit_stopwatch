@@ -12,10 +12,12 @@
 # ============================================================
 
 # Default project. Override these variables on the make command line.
-SRC_DIR  ?= adders
-RTL_SRCS ?= n_adder.sv
-TB_SRC   ?= n_adder_tb.sv
-TB_TOP   ?= n_adder_tb
+SRC_DIR  ?= MIPS
+RTL_SRCS ?= top.v mips.v controller.v maindec.v aludec.v datapath.v \
+            regfile.v adder.v sl2.v signext.v flopr.v mux2.v alu.v \
+            dmem.v imem.v
+TB_SRC   ?= testbench.v
+TB_TOP   ?= testbench
 
 # Generic waveform script in the same directory as this Makefile.
 WAVE_DO  ?= wave.do

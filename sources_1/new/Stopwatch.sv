@@ -1,4 +1,35 @@
 
+module clock_divider #(
+    parameter int INPUT_HZ = 100_000_000,
+    parameter int OUTPUT_HZ = 1_000
+) (
+    input  logic clk,
+    input  logic rstn,
+    output logic divided_clk
+);
+
+    localparam int HALF_PERIOD = INPUT_HZ / (2 * OUTPUT_HZ);
+    localparam int COUNTER_WIDTH = (HALF_PERIOD <= 1) ? 1 : $clog2(HALF_PERIOD);
+
+    logic [COUNTER_WIDTH-1:0] count;
+
+    always_ff @(posedge clk or negedge rstn) begin
+        if (!rstn) begin
+            count       <= '0;
+            divided_clk <= 1'b0;
+        end
+        else if (count == HALF_PERIOD - 1) begin
+            count       <= '0;
+            divided_clk <= ~divided_clk;
+        end
+        else begin
+            count <= count + 1'b1;
+        end
+    end
+
+endmodule
+
+
 module Stopwatch (
     input logic clk,           
     input logic rstn,          
@@ -11,16 +42,25 @@ module Stopwatch (
 );
 
    
+    logic clk_1khz;          
     logic cen;               
     logic increment_once;    
     logic clear_count;       
     logic [15:0] counter_value;  
-    
+    clock_divider #(
+        .INPUT_HZ(100_000_000),
+        .OUTPUT_HZ(1_000)
+    ) stopwatch_clock (
+        .clk(clk),
+        .rstn(rstn),
+        .divided_clk(clk_1khz)
+    );
+
 
     
     
     fsm stopwatch_fsm (
-        .clk(clk),
+        .clk(clk_1khz),
         .rstn(rstn),
         .start(start),
         .stop(stop),
@@ -34,7 +74,7 @@ module Stopwatch (
     
     
     counter stopwatch_counter (
-        .clk(clk),
+        .clk(clk_1khz),
         .rstn(rstn),
         .cen(cen),
         .increment_once(increment_once),
@@ -46,7 +86,7 @@ module Stopwatch (
    
     SevenSegmentControl display_control (
         .clk(clk),
-        .reset(rstn),
+        .reset(!rstn),
         .dataIn(counter_value),
         .digitDisplay(4'b1111), 
         .digitPoint(4'b0000),   
