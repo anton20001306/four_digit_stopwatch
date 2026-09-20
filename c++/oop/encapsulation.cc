@@ -28,11 +28,9 @@ public:
             cout << vidioTitle << endl;
         };
     }
-
     void subscribe(){
         SubscriptionsCount++;
     }
-
     void unsubscribe(){
         if(SubscriptionsCount > 0)
             SubscriptionsCount--;
