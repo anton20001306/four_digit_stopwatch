@@ -1,6 +1,6 @@
 module decimal_counter #(
     parameter WIDTH = 16,
-    parameter MODE_COUNT = 10s
+    parameter MODE_COUNT = 10
 )(
     input logic clk,
     input logic rst,
